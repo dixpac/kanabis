@@ -28,8 +28,13 @@ export default class App extends React.Component {
 
     return (
       <div>
-        <button onClick={this.addNote}>+</button>
-        <Notes notes={notes} onEdit={this.editNote} />
+        <button 
+          className="add-note" 
+          onClick={this.addNote}>
+          + Add</button>
+        <Notes notes={notes} 
+          onEdit={this.editNote} 
+          onDelete={this.deleteNote} />
       </div>
     );
   }
@@ -52,5 +57,11 @@ export default class App extends React.Component {
     });
 
     this.setState({notes});
+  };
+
+  deleteNote = (id) => {
+   this.setState({
+    notes: this.state.notes.filter(note => note.id !== id)    
+   }); 
   };
 }
